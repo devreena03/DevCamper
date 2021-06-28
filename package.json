@@ -1,0 +1,20 @@
+{
+  "name": "devcamper",
+  "version": "1.0.0",
+  "description": "devcamper API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" :"set NODE_ENV=prod && node server",
+    "dev":"nodemon server"
+  },
+  "author": "Reena",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
