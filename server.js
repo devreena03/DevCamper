@@ -7,6 +7,7 @@ dotenv.config({ path: "./config/config.env" });
 
 //route files
 const bootcamps = require("./routes/bootcamps");
+const courses = require("./routes/courses");
 const logger = require("./middlewares/logger");
 const connectDb = require("./config/db");
 const error = require("./middlewares/error");
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV === "development") {
 }
 app.use(express.json());
 app.use("/api/v1/bootcamps", bootcamps);
+app.use("/api/v1/courses", courses);
 app.use(error);
 //express router
 
