@@ -12,12 +12,15 @@ const Bootcamp = require("../models/Bootcamp");
 
 //include other router
 const courseRouter = require("./courses");
+const reviewRouter = require("./reviews");
 
 const router = express.Router();
 const advancedResults = require("../middlewares/advancedResult");
 const { protect, authorize } = require("../middlewares/auth");
 //re-route to course resource
 router.use("/:bootcampId/courses", courseRouter);
+router.use("/:bootcampId/reviews", reviewRouter);
+
 router
   .route("/")
   .get(advancedResults(Bootcamp, "courses"), getBootcamps)
