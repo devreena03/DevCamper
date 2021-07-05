@@ -4,12 +4,15 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const color = require("colors");
 const fileupload = require("express-fileupload");
+var cookieParser = require("cookie-parser");
+
 //load the config
 dotenv.config({ path: "./config/config.env" });
 
 //route files
 const bootcamps = require("./routes/bootcamps");
 const courses = require("./routes/courses");
+const auth = require("./routes/auth");
 const logger = require("./middlewares/logger");
 const connectDb = require("./config/db");
 const error = require("./middlewares/error");
@@ -28,12 +31,14 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 // File uploading
 app.use(fileupload());
+app.use(cookieParser());
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/v1/bootcamps", bootcamps);
 app.use("/api/v1/courses", courses);
+app.use("/api/v1/auth", auth);
 app.use(error);
 //express router
 
