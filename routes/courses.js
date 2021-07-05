@@ -7,9 +7,12 @@ const {
   deleteCourse,
 } = require("../controllers/courses");
 
-const router = express.Router({ mergeParams: true });
+const Course = require("../models/Course");
 
-router.route("/").get(getCourses).post(createCourse);
+const router = express.Router({ mergeParams: true });
+const advancedResults = require("../middlewares/advancedResult");
+
+router.route("/").get(advancedResults(Course), getCourses).post(createCourse);
 
 router.route("/:id").get(getCourseById).put(updateCourse).delete(deleteCourse);
 
