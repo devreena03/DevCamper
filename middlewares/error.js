@@ -8,7 +8,7 @@ const errorHandler = (err, req, res, next) => {
 
   //mongoose bad obectid
   if (err.name === "CastError") {
-    error = new ErrorResponse(`Not found ${err.value}`, 404);
+    error = new ErrorResponse(`Resource not found`, 404);
   }
 
   //mongoose duplicate key error

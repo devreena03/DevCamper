@@ -178,6 +178,21 @@ exports.updatePassword = asyncHandler(async (req, res, next) => {
   sendTokenResponse(user, 200, res);
 });
 
+// @desc    Get logout user / clear cookies
+// @route   GET /api/v1/auth/logout
+// @access  Private
+exports.logout = asyncHandler(async (req, res, next) => {
+  const option = {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  };
+
+  res.status(200).cookie("token", "none", option).json({
+    success: true,
+    data: {},
+  });
+});
+
 //Get token from  model, create cookies and send in response
 const sendTokenResponse = (user, statusCode, res) => {
   const token = user.getSignedToken();
